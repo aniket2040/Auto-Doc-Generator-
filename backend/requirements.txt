@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+python-multipart
+
+docxtpl
+python-docx
+
+jinja2
+
+pydantic
+
+aiofiles
