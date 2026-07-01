@@ -7,7 +7,8 @@
 "name": "statement_of_work_no",
 "label": "Statement Of Work Number",
 "type": "text",
-"required": true
+"required": true,
+  "section" : "Project Information"
 },
 {
 "name": "department_id",
@@ -70,7 +71,8 @@
   "label": "Scope Of Services",
   "type": "dynamic_list",
   "required": true,
-  "item_type" : "text"
+  "item_type" : "text",
+  "section" : "Scope Of Services"
 },
 
 {
@@ -136,6 +138,7 @@
   "name": "consultants",
   "label": "Consultants",
   "type": "table",
+  "section" : "Consultants",
   "required" : true,
   "min_rows" : 1,
   "columns": [

@@ -24,6 +24,8 @@ class FieldSchema(BaseModel):
         ]
     ] = None
 
+    section: str
+
     required: bool = False
 
     # Dynamic List Options
