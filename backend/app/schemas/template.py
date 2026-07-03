@@ -1,6 +1,7 @@
 from typing import List, Optional, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
+
 
 class TableColumnSchema(BaseModel):
     name: str
@@ -11,6 +12,11 @@ class TableColumnSchema(BaseModel):
 class FieldSchema(BaseModel):
     name: str
     label: str
+
+    # Form Section
+    section: str = "General"
+
+    # Field Type
     type: Optional[
         Literal[
             "text",
@@ -20,37 +26,30 @@ class FieldSchema(BaseModel):
             "currency",
             "dynamic_list",
             "nested_service_list",
-            "table"
+            "table",
         ]
     ] = None
 
-    section: str
-
+    # Validation
     required: bool = False
 
-    # Dynamic List Options
+    # Dynamic List
     item_type: Optional[str] = None
 
-    # Nested Service Options
+    # Nested Service List
     parent_label: Optional[str] = None
     child_label: Optional[str] = None
 
-    # Table Options
+    # Dynamic Table
     columns: Optional[List[TableColumnSchema]] = None
     min_rows: Optional[int] = None
 
-    # Computed Fields
+    # Read-only / Computed Fields
     readonly: bool = False
     auto_calculated: bool = False
-
-
-
-
 
 
 class TemplateSchema(BaseModel):
     template_id: str
     template_name: str
     fields: List[FieldSchema]
-
-

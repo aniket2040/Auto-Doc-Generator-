@@ -1,182 +1,196 @@
 {
-"template_id": "toyota_sow",
-"template_name": "Toyota Statement Of Work",
+  "template_id": "toyota_sow",
+  "template_name": "Toyota Statement Of Work",
 
-"fields": [
-{
-"name": "statement_of_work_no",
-"label": "Statement Of Work Number",
-"type": "text",
-"required": true,
-  "section" : "Project Information"
-},
-{
-"name": "department_id",
-"label": "Department ID",
-"type": "text",
-"required": true
-},
-{
-"name": "serial_id",
-"label": "Serial ID",
-"type": "text",
-"required": true
-},
-{
-"name": "project_id",
-"label": "Project ID",
-"type": "text",
-"required": true
-},
-{
-"name": "project_name",
-"label": "Project Name",
-"type": "text",
-"required": true
-},
-{
-"name": "purpose_sow",
-"label": "Purpose Of SOW",
-"type": "textarea",
-"required": true
-},
-{
-"name": "commencement_date",
-"label": "Commencement Date",
-"type": "date",
-"required": true
-},
-{
-"name": "termination_date",
-"label": "Termination Date",
-"type": "date",
-"required": true
-},
-{
-"name": "project_manager",
-"label": "Project Manager",
-"type": "text",
-"required": true
-},
-{
-"name": "purchase_order_amount",
-"label": "Purchase Order Amount",
-"type": "currency",
-"required": true
-},
+  "fields": [
 
-
-{
-  "name": "SCOPE_OF_SERVICES",
-  "label": "Scope Of Services",
-  "type": "dynamic_list",
-  "required": true,
-  "item_type" : "text",
-  "section" : "Scope Of Services"
-},
-
-{
-  "name": "SERVICES_TO_BE_PERFORMED",
-  "label": "Services To Be Performed",
-  "type": "nested_service_list",
-  "required": true,
-  "parent_label" : "Service",
-  "child_label" : "Sub Service"
-},
-
-{
-  "name": "key_personnel",
-  "label": "Key Personnel",
-  "type": "table",
-  "required" : true,
-  "min_rows" : 1,
-  "columns": [
     {
-      "name": "role",
-      "label": "Role",
-      "type": "text"
+      "name": "statement_of_work_no",
+      "label": "Statement Of Work Number",
+      "type": "text",
+      "required": true,
+      "section": "Project Information"
     },
     {
-      "name": "name",
-      "label": "Name",
-      "type": "text"
+      "name": "department_id",
+      "label": "Department ID",
+      "type": "text",
+      "required": true,
+      "section": "Project Information"
     },
     {
-      "name": "phone",
-      "label": "Phone",
-      "type": "text"
+      "name": "serial_id",
+      "label": "Serial ID",
+      "type": "text",
+      "required": true,
+      "section": "Project Information"
+    },
+    {
+      "name": "project_id",
+      "label": "Project ID",
+      "type": "text",
+      "required": true,
+      "section": "Project Information"
+    },
+    {
+      "name": "project_name",
+      "label": "Project Name",
+      "type": "text",
+      "required": true,
+      "section": "Project Information"
+    },
+    {
+      "name": "purpose_sow",
+      "label": "Purpose Of SOW",
+      "type": "textarea",
+      "required": true,
+      "section": "Project Information"
+    },
+    {
+      "name": "commencement_date",
+      "label": "Commencement Date",
+      "type": "date",
+      "required": true,
+      "section": "Project Information"
+    },
+    {
+      "name": "termination_date",
+      "label": "Termination Date",
+      "type": "date",
+      "required": true,
+      "section": "Project Information"
+    },
+    {
+      "name": "project_manager",
+      "label": "Project Manager",
+      "type": "text",
+      "required": true,
+      "section": "Project Information"
+    },
+    {
+      "name": "purchase_order_amount",
+      "label": "Purchase Order Amount",
+      "type": "currency",
+      "required": true,
+      "section": "Project Information"
+    },
+
+    {
+      "name": "SCOPE_OF_SERVICES",
+      "label": "Scope Of Services",
+      "type": "dynamic_list",
+      "required": true,
+      "item_type": "text",
+      "section": "Scope Of Services"
+    },
+
+    {
+      "name": "SERVICES_TO_BE_PERFORMED",
+      "label": "Services To Be Performed",
+      "type": "nested_service_list",
+      "required": true,
+      "parent_label": "Service",
+      "child_label": "Sub Service",
+      "section": "Services To Be Performed"
+    },
+
+    {
+      "name": "key_personnel",
+      "label": "Key Personnel",
+      "type": "table",
+      "required": true,
+      "min_rows": 1,
+      "section": "Key Personnel",
+      "columns": [
+        {
+          "name": "role",
+          "label": "Role",
+          "type": "text"
+        },
+        {
+          "name": "name",
+          "label": "Name",
+          "type": "text"
+        },
+        {
+          "name": "phone",
+          "label": "Phone",
+          "type": "text"
+        }
+      ]
+    },
+
+    {
+      "name": "tms_staffing",
+      "label": "TMS Staffing",
+      "type": "table",
+      "required": true,
+      "min_rows": 1,
+      "section": "TMS Staffing",
+      "columns": [
+        {
+          "name": "role",
+          "label": "Role",
+          "type": "text"
+        },
+        {
+          "name": "name",
+          "label": "Name",
+          "type": "text"
+        },
+        {
+          "name": "phone",
+          "label": "Phone",
+          "type": "text"
+        }
+      ]
+    },
+
+    {
+      "name": "consultants",
+      "label": "Consultants",
+      "type": "table",
+      "required": true,
+      "min_rows": 1,
+      "section": "Consultants",
+      "columns": [
+        {
+          "name": "consultant_name",
+          "label": "Consultant Name",
+          "type": "text"
+        },
+        {
+          "name": "role",
+          "label": "Role",
+          "type": "text"
+        },
+        {
+          "name": "hourly_rate",
+          "label": "Hourly Rate",
+          "type": "number"
+        },
+        {
+          "name": "hours",
+          "label": "Hours",
+          "type": "number"
+        },
+        {
+          "name": "fee",
+          "label": "Fee",
+          "type": "number"
+        }
+      ]
+    },
+
+    {
+      "name": "total_fee",
+      "label": "Total Fee",
+      "type": "currency",
+      "required": true,
+      "readonly": true,
+      "auto_calculated": true,
+      "section": "Consultants"
     }
-  ]
-},
 
-{
-  "name": "tms_staffing",
-  "label": "TMS Staffing",
-  "type": "table",
-  "required" : true,
-  "min_rows" : 1,
-  "columns": [
-    {
-      "name": "role",
-      "label": "Role",
-      "type": "text"
-    },
-    {
-      "name": "name",
-      "label": "Name",
-      "type": "text"
-    },
-    {
-      "name": "phone",
-      "label": "Phone",
-      "type": "text"
-    }
   ]
-},
-
-{
-  "name": "consultants",
-  "label": "Consultants",
-  "type": "table",
-  "section" : "Consultants",
-  "required" : true,
-  "min_rows" : 1,
-  "columns": [
-    {
-      "name": "consultant_name",
-      "label": "Consultant Name",
-      "type": "text"
-    },
-    {
-      "name": "role",
-      "label": "Role",
-      "type": "text"
-    },
-    {
-      "name": "hourly_rate",
-      "label": "Hourly Rate",
-      "type": "number"
-    },
-    {
-      "name": "hours",
-      "label": "Hours",
-      "type": "number"
-    },
-    {
-      "name": "fee",
-      "label": "Fee",
-      "type": "number"
-    }
-  ]
-},
-
-{
-  "name": "total_fee",
-  "label": "Total Fee",
-  "type": "currency",
-  "required" : true,
-  "readonly" : true,
-  "auto_calculated": true
-}
-]
 }
