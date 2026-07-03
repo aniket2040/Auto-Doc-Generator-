@@ -1009,3 +1009,510 @@ contract.schema.json
 ```
 
 Both filenames must match.
+
+
+
+
+
+
+
+# 🎨 Frontend Architecture
+
+The frontend is built using **React + TypeScript** with a modular and reusable architecture.
+
+```
+Frontend
+
+Pages
+│
+├── HomePage
+│
+└── TemplatePage
+        │
+        ▼
+DynamicForm
+        │
+        ▼
+DynamicField
+        │
+        ├───────────────┐
+        ▼               ▼
+TextFieldInput     DateFieldInput
+CurrencyField      DynamicListInput
+NestedService      DynamicTableInput
+```
+
+---
+
+## Folder Structure
+
+```
+frontend/
+
+src/
+
+├── api/
+│   ├── axios.ts
+│   ├── templates.ts
+│   └── documents.ts
+│
+├── components/
+│   ├── DynamicForm.tsx
+│   ├── DynamicField.tsx
+│   ├── TemplateCard.tsx
+│   └── fields/
+│
+├── hooks/
+│   ├── useTemplate.ts
+│   ├── useTemplates.ts
+│   ├── useFormEngine.ts
+│   ├── useDocumentGeneration.ts
+│   └── useFieldBinding.ts
+│
+├── pages/
+│
+├── utils/
+│
+├── types/
+│
+└── App.tsx
+```
+
+---
+
+# Frontend Design Principles
+
+The frontend follows a **schema-driven architecture**.
+
+Instead of writing forms manually, every form is generated dynamically from the JSON schema received from the backend.
+
+```
+Backend Schema
+
+↓
+
+React Components
+
+↓
+
+Dynamic Form
+
+↓
+
+User Input
+```
+
+No React code changes are required when introducing a new document template.
+
+---
+
+# Backend Architecture
+
+The backend follows a layered architecture.
+
+```
+Routes
+
+↓
+
+Services
+
+↓
+
+Schemas
+
+↓
+
+Templates
+
+↓
+
+Generated DOCX
+```
+
+---
+
+## Folder Structure
+
+```
+backend/
+
+app/
+
+├── routes/
+│
+├── services/
+│
+├── schemas/
+│
+├── templates/
+│
+└── generated/
+```
+
+---
+
+# Service Responsibilities
+
+## TemplateService
+
+Responsible for
+
+- Discovering templates
+- Loading JSON schemas
+- Validating schemas
+- Returning metadata
+
+---
+
+## DocumentService
+
+Responsible for
+
+- Loading DOCX templates
+- Rendering Jinja2 placeholders
+- Saving generated documents
+- Returning download paths
+
+---
+
+# API Endpoints
+
+## List Templates
+
+```
+GET /templates
+```
+
+Response
+
+```json
+[
+  {
+    "template_id": "toyota_sow",
+    "template_name": "Toyota Statement Of Work",
+    "field_count": 16
+  }
+]
+```
+
+---
+
+## Get Template
+
+```
+GET /templates/{template_id}
+```
+
+Example
+
+```
+GET /templates/toyota_sow
+```
+
+Returns
+
+```json
+{
+  "template_id": "...",
+
+  "template_name": "...",
+
+  "fields": [ ]
+}
+```
+
+---
+
+## Generate Document
+
+```
+POST /documents/generate/{template_id}
+```
+
+Example
+
+```
+POST
+
+/documents/generate/toyota_sow
+```
+
+Request Body
+
+```json
+{
+    "project_name":"DD365",
+
+    "project_manager":"Aniket Kumar"
+}
+```
+
+Returns
+
+```
+Microsoft Word (.docx)
+```
+
+---
+
+# Example Workflow
+
+```
+Choose Template
+
+↓
+
+Frontend requests schema
+
+↓
+
+Dynamic Form Generated
+
+↓
+
+User fills data
+
+↓
+
+POST Request
+
+↓
+
+FastAPI
+
+↓
+
+DocxTPL
+
+↓
+
+Generated DOCX
+
+↓
+
+Download
+```
+
+---
+
+# Validation
+
+Validation occurs at multiple levels.
+
+## Frontend
+
+- Required fields
+- Data type validation
+- Dynamic form validation
+
+---
+
+## Backend
+
+- JSON schema validation
+- Pydantic validation
+- Template existence
+- DOCX generation validation
+
+---
+
+# Performance
+
+The platform has been designed for scalability.
+
+Features include
+
+- Dynamic schema loading
+- Modular services
+- Reusable React components
+- Separation of concerns
+- Stateless API design
+
+The architecture allows new document types to be introduced without modifying frontend or backend business logic.
+
+---
+
+# Screenshots
+
+## Home Page
+
+```
+(Add screenshot here)
+```
+
+---
+
+## Dynamic Form
+
+```
+(Add screenshot here)
+```
+
+---
+
+## Generated Word Document
+
+```
+(Add screenshot here)
+```
+
+---
+
+# Roadmap
+
+## Version 1 ✅
+
+- Dynamic Templates
+
+- Dynamic Forms
+
+- DOCX Generation
+
+- Download API
+
+---
+
+## Version 2 🚧
+
+- Material UI Theme
+
+- Snackbar Notifications
+
+- Loading Indicators
+
+- Auto Fee Calculation
+
+- Developer Panel
+
+- Better Validation
+
+---
+
+## Version 3
+
+- PDF Preview
+
+- Save Draft
+
+- Template Upload
+
+- Schema Upload
+
+- Admin Dashboard
+
+- Template Management
+
+---
+
+## Version 4
+
+- Drag & Drop Template Builder
+
+- Visual Form Designer
+
+- Authentication
+
+- Role Based Access
+
+- Version Control
+
+- Cloud Storage
+
+---
+
+# Contributing
+
+Contributions are welcome.
+
+If you would like to improve Auto DOC Completer:
+
+1. Fork the repository.
+
+2. Create a new feature branch.
+
+```
+git checkout -b feature/my-feature
+```
+
+3. Commit your changes.
+
+```
+git commit -m "Added awesome feature"
+```
+
+4. Push the branch.
+
+```
+git push origin feature/my-feature
+```
+
+5. Open a Pull Request.
+
+---
+
+# Future Improvements
+
+Potential enhancements include:
+
+- AI-assisted template creation
+- Automatic schema generation from DOCX
+- PDF generation support
+- Multi-language templates
+- Versioned templates
+- Approval workflows
+- Digital signatures
+- Cloud document storage
+- User authentication
+- Audit logging
+- Template marketplace
+
+---
+
+# License
+
+This project is released under the MIT License.
+
+Feel free to use, modify, and distribute the software in accordance with the license terms.
+
+---
+
+# Author
+
+**Aniket Kumar**
+
+B.Tech Computer Science (AI & ML)
+
+FastAPI • React • TypeScript • Python • AI/ML
+
+---
+
+# Acknowledgements
+
+This project makes use of several excellent open-source technologies.
+
+- FastAPI
+
+- React
+
+- Material UI
+
+- Axios
+
+- DocxTPL
+
+- Jinja2
+
+- Pydantic
+
+Special thanks to the open-source community for building the tools that make projects like this possible.
+
+---
+
+<div align="center">
+
+### ⭐ If you found this project useful, consider giving it a star!
+
+**Happy Coding! 🚀**
+
+</div>
